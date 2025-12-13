@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Giới Thiệu Bản Thân - PHẠM QUỐC AN</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fb;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        /* 1. HEADER - CÓ ẢNH NỀN VÀ LỚP PHỦ */
+        .header-main {
+            background-color: #be123c;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            /* Thiết lập ảnh nền */
+            background-image: url('IMG_6577.JPG');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Lớp phủ để chữ dễ đọc hơn */
+        .header-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(190, 18, 60, 0.8); /* Đỏ đậm trong suốt */
+            z-index: 1;
+        }
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* Đặt nội dung lên trên lớp phủ */
+            z-index: 2;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        .header-title {
+            font-size: 32px;
+            margin: 0 0 5px 0;
+        }
+        .header-subtitle {
+            font-style: italic;
+            font-size: 18px;
+            margin: 0 0 20px 0;
+        }
+        .header-button {
+            background-color: white;
+            color: #be123c;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 50px 0;
+        }
+        .section-white {
+            background-color: white;
+        }
+
+        /* 2. SẢN PHẨM HỌC TẬP - CÓ ẢNH NỀN NHẠT */
+        .section-gray {
+            background-color: #f9e8e8;
+            /* Thiết lập ảnh nền nhạt, texture */
+            background-image: url('IMG_5346.JPG');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            font-size: 28px;
+            color: #be123c;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+        .grid-2-cols {
+            display: flex;
+            gap: 20px;
+        }
+        .col-half {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border-left: 4px solid #be123c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .col-title {
+            color: #be123c;
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .col-list {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        /* Cập nhật bố cục 1 hàng ngang (cuộn ngang) */
+        .product-flex-container {
+            display: flex;
+            flex-wrap: nowrap; /* Quan trọng: Đảm bảo không xuống dòng */
+            overflow-x: auto; /* Cho phép người dùng cuộn xem hết các sản phẩm */
+            padding-bottom: 15px; /* Thêm padding cho thanh cuộn */
+            gap: 20px;
+            /* Loại bỏ justify-content: space-between khi cuộn */
+        }
+        .product-card {
+            min-width: 280px; /* Kích thước tối thiểu cho mỗi thẻ */
+            /* Để 3 thẻ hiển thị đều trên màn hình desktop, set width 33.33% */
+            width: calc(33.33% - 14px); 
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #be123c;
+            flex-shrink: 0; /* Ngăn thẻ co lại */
+            margin-bottom: 0; /* Loại bỏ margin dưới khi cuộn ngang */
+        }
+        .product-img {
+            width: 100%;
+            /* Đã điều chỉnh: Thiết lập tỷ lệ 1:1 (hình vuông) */
+            height: auto; 
+            aspect-ratio: 1 / 1; 
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .product-title {
+            font-weight: bold;
+            color: #be123c;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        /* 3. LIÊN HỆ - CÓ ẢNH NỀN TỐI (Đã chuyển sang màu đen đặc) */
+        .footer-main {
+            background-color: #111827; /* Màu đen/xám đậm */
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            /* Đã loại bỏ background-image */
+            background-image: none; 
+        }
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .contact-link {
+            color: #f472b6;
+            text-decoration: none;
+        }
+        .social-link {
+            color: #ccc;
+            margin: 0 10px;
+        }
+        .social-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .social-text {
+            font-size: 18px;
+            margin-left: 5px;
+        }
+        .copyright-text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        @media (max-width: 700px) {
+            .grid-2-cols {
+                flex-direction: column;
+            }
+            .col-half {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .profile-section {
+            }
+            /* Thẻ sản phẩm sẽ không bị ép width 100% nữa, mà cuộn theo min-width: 280px */
+            /* .product-card {
+                width: 100%; 
+            } */
+        }
+    </style>
+</head>
+<body>
+
+    <header id="trang-chu" class="header-main">
+        <div class="container">
+            <div class="profile-section">
+                <!-- VỊ TRÍ 1: ẢNH ĐẠI DIỆN -->
+                <!-- Thay thế IMG_6577.JPG bằng URL hoặc tên file ảnh đại diện của bạn -->
+                <img src="IMG_6577.JPG"
+                     alt="Ảnh đại diện PHẠM QUỐC AN"
+                     class="profile-img"
+                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/111827/ffffff?text=USER';"
+                >
+                <h1 class="header-title">PHẠM QUỐC AN</h1>
+                <p class="header-subtitle">"Không tài năng, chỉ có nỗ lực. Không giới hạn, chỉ có tiến bộ."</p>
+                <a href="#gioi-thieu" class="header-button">
+                    Tìm hiểu thêm về tôi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="gioi-thieu" class="section section-white">
+        <div class="container">
+            <h2 class="section-title">
+                Giới Thiệu Bản Thân
+            </h2>
+
+            <div class="grid-2-cols">
+                <div class="col-half">
+                    <h3 class="col-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        Học Vấn
+                    </h3>
+                    <ul class="col-list">
+                        <li>Lớp 12A1.</li>
+                        <li>Trường THCS - THPT Minh Hoà.</li>
+                    </ul>
+                </div>
+
+                <div class="col-half">
+                    <h3 class="col-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        Sở Thích
+                    </h3>
+                    <ul class="col-list">
+                        <li>Xem Phim.</li>
+                        <li>Ăn Uống.</li>
+                        <li>Ngủ.</li>
+                        <li>Môn học yêu thích: Toán, Hoá, Sinh.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="san-pham" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">
+                Sản Phẩm Học Tập Tiêu Biểu
+            </h2>
+
+            <div class="product-flex-container">
+                
+                <div class="product-card">
+                    <!-- VỊ TRÍ 2: ẢNH SẢN PHẨM 1 -->
+                    <!-- Thay thế URL ảnh placeholder bằng URL ảnh của bạn -->
+                    <img src="IMG_4837.JPG"
+                         alt="Giải Khuyến Khích Khoa Học Tự Nhiên Cấp Tỉnh 2025"
+                         class="product-img"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/8B0000/ffffff?text=Science+Award';"
+                    >
+                    <h3 class="product-title">1. Giải Khuyến Khích Khoa Học Tự Nhiên Cấp Tỉnh 2025.</h3>
+                    <p style="font-size: 14px; color: #666;">Thành tích đạt được trong lĩnh vực khoa học tự nhiên, thể hiện khả năng nghiên cứu và ứng dụng kiến thức vào thực tế.</p>
+                </div>
+
+                <div class="product-card">
+                    <!-- VỊ TRÍ 3: ẢNH SẢN PHẨM 2 -->
+                    <!-- Thay thế URL ảnh placeholder bằng URL ảnh của bạn -->
+                    <img src="IMG_6070.JPG"
+                         alt="Học Sinh Giỏi Năm Học 2024 - 2025"
+                         class="product-img"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/DC143C/ffffff?text=Excellent+Student';"
+                    >
+                    <h3 class="product-title">2. Học Sinh Giỏi Năm Học 2024 - 2025.</h3>
+                    <p style="font-size: 14px; color: #666;">Thành tích xuất sắc trong học tập, đạt danh hiệu Học Sinh Giỏi trong năm học 2024 - 2025.</p>
+                </div>
+
+                <div class="product-card">
+                    <!-- VỊ TRÍ 4: ẢNH SẢN PHẨM 3 -->
+                    <!-- Thay thế URL ảnh placeholder bằng URL ảnh của bạn -->
+                    <img src="20190605-04.jpg"
+                         alt="Giải Nhất Cuộc Thi Nét Cọ Tuổi Thơ Cấp Huyện Dầu Tiếng 2019"
+                         class="product-img"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF6347/ffffff?text=Painting+Award';"
+                    >
+                    <h3 class="product-title">3. Giải Nhất Cuộc Thi Nét Cọ Tuổi Thơ Cấp Huyện Dầu Tiếng 2019.</h3>
+                    <p style="font-size: 14px; color: #666;">Thành tích đạt được trong cuộc thi nghệ thuật, cho thấy sự đa dạng, sáng tạo trong sở thích và năng khiếu hội hoạ cá nhân.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="lien-he" class="footer-main">
+        <div class="container">
+            <h3 class="footer-title">Liên Hệ</h3>
+            <div>
+                <p style="font-size: 16px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6"></path></svg>
+                    Email: <a href="mailto:anquoc159z@gmail.com" class="contact-link">anquoc159z@gmail.com</a>
+                </p>
+
+                <div class="social-container">
+                    <a href="https://www.facebook.com/pham.quoc.an.175319" target="_blank" title="Facebook cá nhân" class="social-link" style="color: #f472b6;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.542-1.333h2.458v-4h-3c-3.159 0-4 779-4 3.5zm-4 1v-5h10v5h-10z"/>
+                        </svg>
+                        <span class="social-text" style="color: white;">Facebook: Phạm Quốc An</span>
+                    </a>
+                </div>
+            </div>
+            <p class="copyright-text">Dự Án Giới Thiệu Cá Nhân Môn Tin Học Năm Học 2025 - 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>
